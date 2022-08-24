@@ -9,7 +9,6 @@ use App\CQRS\Category\QueryBus\Query\FetchCategoriesQuery;
 use App\CQRS\Common\Command\CommandBus;
 use App\CQRS\Common\Query\QueryBus;
 use App\Entity\Category;
-use App\Repository\CategoryRepository;
 use App\Request\CategoryRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -20,13 +19,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
 
-    private CategoryRepository $repository;
     private CommandBus $commandBus;
     private QueryBus $queryBus;
 
-    public function __construct(CategoryRepository $repository,CommandBus $commandBus,QueryBus $queryBus)
+    public function __construct(CommandBus $commandBus,QueryBus $queryBus)
     {
-        $this->repository = $repository;
         $this->commandBus = $commandBus;
         $this->queryBus = $queryBus;
     }
