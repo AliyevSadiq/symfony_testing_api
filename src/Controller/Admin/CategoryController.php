@@ -44,10 +44,12 @@ class CategoryController extends AbstractController
 
     #[OA\RequestBody(
         required: true,
-        content: new OA\JsonContent(properties: [
-            new OA\Property(type: 'string', example: 'category_title', property: 'title'),
-            new OA\Property(type: 'boolean', example: false, property: 'is_show'),
-        ])
+        content: [new OA\MediaType(mediaType: 'multipart/form-data',
+            schema: new OA\Schema(properties: [
+                new OA\Property(type: 'string', example: 'category_title', property: 'title'),
+                new OA\Property(type: 'booelan', example: false, property: 'is_show'),
+            ])
+        )]
     )]
     #[Route('/store', name: 'store', methods: ['POST'], priority: 2)]
     #[Route('/{id}/update', name: 'update', methods: ['PUT'])]

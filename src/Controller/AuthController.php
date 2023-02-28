@@ -21,6 +21,7 @@ class AuthController extends AbstractController
     {
     }
 
+    #[Security(name: null)]
     #[OA\RequestBody(
         required: true,
         content: new OA\JsonContent(properties: [
@@ -29,7 +30,6 @@ class AuthController extends AbstractController
             new OA\Property(type: 'string', example: '1234', property: 'password'),
         ])
     )]
-    #[Security(name: null)]
     #[Route('/auth/registration', name: 'registration', methods: ['POST'])]
     public function registration(RegistrationRequest $request): Response
     {
@@ -39,19 +39,6 @@ class AuthController extends AbstractController
     }
 
 
-    #[Security(name: null)]
-    #[OA\RequestBody(
-        required: true,
-        content: new OA\JsonContent(properties: [
-            new OA\Property(type: 'string', example: 'test@mail.com', property: 'email'),
-            new OA\Property(type: 'string', example: '1234', property: 'password'),
-        ])
-    )]
-    #[Route('/auth/login', name: 'login', methods: ['POST'])]
-    public function login()
-    {
-
-    }
 
     #[Route('/logout', name: 'logout', methods: ['POST'])]
     public function logout(RefreshTokenRepository $repository)
