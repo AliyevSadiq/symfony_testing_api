@@ -1,0 +1,8 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+    prefix: '/api'
+jwt_auth:
+    path: /api/auth/login
+api_refresh_token:
+    path: /api/token/refresh
